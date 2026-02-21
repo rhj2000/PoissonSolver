@@ -1,0 +1,10 @@
+# Build folder
+build/
+
+# Compiled files
+*.o
+*.out
+*.exe
+
+# Backup files
+*~
