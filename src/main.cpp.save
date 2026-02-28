@@ -1,0 +1,16 @@
+// main class of PoissonSolver
+#include "Grid.hpp"
+#include "PoissonSolver.hpp"
+#include <iostream>
+
+int main() {
+	grid_ns::Grid grid(5,5,1.0,1.0); //first we create the grid object on which to solve the problem
+	double dt { 0.01 };
+	double alpha{ 0.1 };
+	poisson_ns::PoissonSolver psolver(grid, dt, alpha);
+	psolver.solve(100); //advance the FTCS method 100 times
+
+	return 0;
+
+
+}
