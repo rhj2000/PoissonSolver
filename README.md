@@ -62,14 +62,4 @@ From the build directory:
 
 ### Example Output
 
-Example solution for a 5×5 grid with boundary value u=1:
-
-```
-1 1 1 1 1
-1 0.03 0.016 0.03 1
-1 0.016 0.001 0.016 1
-1 0.03 0.016 0.03 1
-1 1 1 1 1
-```
-
-
+...
