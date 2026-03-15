@@ -3,19 +3,25 @@
 
 namespace grid_ns {
 	class Grid; //forward declaration of Grid tells the compiler that Grid exists 
+}	
+
+namespace io_ns {
+	class ConsoleWriter; //need this for friend class declaration
 }
 
-namespace poisson_ns {
+namespace diffusion_ns {
 
-	class PoissonSolver {
+	class DiffusionSolver {
 
 	public:
 
-		//PoissonSolver(const grid_ns::Grid &g) : grid_(g) {}
-		//PoissonSolver(const grid_ns::Grid &g);
-		PoissonSolver(const grid_ns::Grid& g, double dt, double alpha);
+		DiffusionSolver(const grid_ns::Grid& g, double dt, double alpha);
+		double laplacian(int i, int j) const;
+		double source(int i, int j) const;
 		void solve(int steps);
 		void debug();
+
+		friend class io_ns::ConsoleWriter;
 
 	private:
 		const grid_ns::Grid& grid_;

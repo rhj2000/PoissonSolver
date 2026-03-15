@@ -17,26 +17,26 @@ namespace grid_ns {
 	public:
 		//First, initialize the grid object
 		//Constructor in grid source will handle instance(s)
-		Grid(int nx, int ny, double lx, double ly); //could declare empty?
+		Grid(int nx, int ny, double lx, double ly); 
 
 		//we should be able to read back out some of these values
 		int nx() const { return nx_; }
-		int  ny() const { return ny_; }
+		int ny() const { return ny_; }
 		double lx() const { return lx_; }
 		double ly() const { return ly_; }
 		double dx() const { return dx_; }
 		double dy() const { return dy_; }
 
-		int size() const; //define the size variable which will return nx_ * ny_
+		int size() const; //returns nx_ * ny_
 
 		int index(int i, int j) const; //define the method that converts subscripts to linear indices
 
-		struct Index2D { //struct for (x,y) -> (i,j) helper function
+		struct Index2D { //struct output for (x,y) -> (i,j) helper function
 			int i;
 			int j;
 		};
 
-		const Index2D cartesian_to_index2d(int x, int y); // (x,y) coordinate helper function
+		Index2D cartesian_to_index2d(int x, int y) const; //(x,y) coorinate helper function for source function
 
 	};
 

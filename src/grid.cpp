@@ -21,12 +21,12 @@ namespace grid_ns {
 	}
 
 	int Grid::index(int i, int j) const
-	{
-		// (i,j) -> (row, column) -> (y, x)
+	{ 
 		return i * nx_ + j;
 	}
 
-	const Grid::Index2D Grid::cartesian_to_index2d(int x, int y) {
+	Grid::Index2D Grid::cartesian_to_index2d(int x, int y) const {
 		return { nx_ - y, x };
 	}
+
 }
