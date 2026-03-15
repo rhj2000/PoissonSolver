@@ -1,6 +1,6 @@
-# 2D Poisson Solver
+# 2D Diffusion Solver
 
-A finite-difference solver for the 2D Poisson equation written in C++20.
+A finite-difference solver for solutions to the diffusion equation written in C++20.
 The solver uses a structured grid and explicit FTCS iteration with Dirichlet boundary conditions.
 
 This is mostly a practical exercise, but I intend for it to evolve over time! (20260228 RH)
@@ -18,6 +18,9 @@ This code solves the 2D Poisson equation:
 on a square domain with Dirichlet boundary conditions.
 
 The equation is discretized using a second-order finite-difference stencil.
+
+The FTCS method effectively makes this a diffusion solver, since the diffusion equation at steady state models the 
+poisson equation.
 
 ## Project Structure
 
