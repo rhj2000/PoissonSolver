@@ -12,7 +12,7 @@ namespace io_ns {
 
 		//define ascii character space
 
-		std::string levels{" .:-`'*#%@"};
+		std::string levels{"A]B:C-D`E'F*G#H%I@J{K}L[,.N|O+P_Q)R(S^T&U>V<W/X;Y\"Z"};
 		
 		auto const minmax{ minmax_element(vect.begin(), vect.end()) };
 		auto const min{ *minmax.first };
@@ -22,36 +22,21 @@ namespace io_ns {
 			max = -min;
 		}
 
+		int L = levels.size();
+
 		//correct orientation for console write-out
 		//write to screen like a cartesian grid
 		for (int i = 0; i < ny; ++i) {
 			for (int j = 0; j < nx; ++j) {
 				int index = i * nx + j;
 
-				double val = vect[index] / max;
+				double val = vect[index] / max; //domain [-1, 1]
 
-				if (val < -0.8)
-					std::cout << levels[0];
-				else if (val >= -0.8 && val < -0.6)
-					std::cout << levels[1];
-				else if (val >= -0.6 && val < -0.4)
-					std::cout << levels[2];
-				else if (val >= -0.4 && val < -0.2)
-					std::cout << levels[3];
-				else if (val >= -0.2 && val < 0)
-					std::cout << levels[4];
-				else if (val >= 0.0 && val < 0.2)
-					std::cout << levels[5];
-				else if (val >= 0.2 && val < 0.4)
-					std::cout << levels[6];
-				else if (val >= 0.4 && val < 0.6)
-					std::cout << levels[7];
-				else if (val >= 0.6 && val < 0.8)
-					std::cout << levels[8];
-				else if (val >= 0.8 && val <= 1.0)
-					std::cout << levels[9];
+				double normalized = (val + 1.0) / 2.0; //domain [0, 1]
 				
-				std::cout << "  ";
+				int level_index = static_cast<int>(normalized * (L - 1)); //index domain [0, length(levels) - 1]
+				
+				std::cout << levels[level_index] << "  ";
 
 			}
 			std::cout << '\n';

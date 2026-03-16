@@ -69,26 +69,26 @@ namespace diffusion_ns {
 	double DiffusionSolver::source(int i, int j) const {
 		int nx = grid_.nx();
 		int ny = grid_.ny();
-		grid_ns::Grid::Index2D point1 = grid_.cartesian_to_index2d(nx / 4,  ny / 4);
-		grid_ns::Grid::Index2D point2 = grid_.cartesian_to_index2d(3 * nx / 4, ny / 4);
-		grid_ns::Grid::Index2D point3 = grid_.cartesian_to_index2d(3 * nx / 4, 3 * ny / 4);
-		grid_ns::Grid::Index2D point4 = grid_.cartesian_to_index2d(nx / 4, 3 * ny / 4);
-		grid_ns::Grid::Index2D point5 = grid_.cartesian_to_index2d(nx / 2, ny / 2);
+		grid_ns::Grid::Index2D point1 = grid_.cartesian_to_index2d(nx / 4,  ny / 2);
+		grid_ns::Grid::Index2D point2 = grid_.cartesian_to_index2d(nx / 2, ny / 4);
+		grid_ns::Grid::Index2D point3 = grid_.cartesian_to_index2d(nx / 2, 3 * ny / 4);
+		grid_ns::Grid::Index2D point4 = grid_.cartesian_to_index2d(5 * nx / 8, ny / 2);
+		grid_ns::Grid::Index2D point5 = grid_.cartesian_to_index2d(7 * nx / 8, 3 * ny / 4);
 
 		if (i == point1.i && j == point1.j) {
 			return double{ 10.0 };
 		}
 		else if (i == point2.i && j == point2.j) {
-			return double{ 10.0 };
+			return double{ -10.0 };
 		}
 		else if (i == point3.i && j == point3.j) {
-			return double{ 10.0 };
+			return double{ -10.0 };
 		}
 		else if (i == point4.i && j == point4.j) {
-			return double{ 10.0 };
+			return double{ -25.0 };
 		}
 		else if (i == point5.i && j == point5.j) {
-			return double{ -10.0 };
+			return double{ 25.0 };
 		}
 		else
 			return double{ 0.0 };
@@ -111,13 +111,14 @@ namespace diffusion_ns {
 			}
 			u_.swap(u_new_);
 			setBoundaryConditions();
+
 		}
 #ifdef DEBUG
 		//debug();
 		io_ns::CSVWriter csvwriter("Sample.csv");
 		csvwriter.vector_to_csv(u_, nx, ny);
 #endif
-		io_ns::ConsoleWriter::print_ascii(u_, grid_.nx(), grid_.ny());
+	    io_ns::ConsoleWriter::print_ascii(u_, grid_.nx(), grid_.ny());
 
 
 	}
