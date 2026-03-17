@@ -22,7 +22,7 @@ namespace io_ns {
 			max = -min;
 		}
 
-		int L = levels.size();
+		size_t L = levels.size();
 
 		//correct orientation for console write-out
 		//write to screen like a cartesian grid
