@@ -5,8 +5,16 @@
 #include "diffusionsolver3d.hpp"
 #include "run_solver.hpp"
 #include <iostream>
+#include <limits> // for std::numeric_limits
 
 namespace ui_ns {
+
+	void ConsoleMenu::catch_extraction_fail() {
+		if (!std::cin) { //If previous extraction failed
+			std::cin.clear(); //Revert to normal operation mode
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //Remove bad input
+		}
+	}
 
 	void ConsoleMenu::run() {
 
@@ -24,6 +32,7 @@ namespace ui_ns {
 				std::cout << "=    3.      Exit           = \n";
 				std::cout << "============================= \n";
 				std::cin >> choice;
+				catch_extraction_fail();
 			}
 			switch (choice) {
 				case 1:	
@@ -50,6 +59,7 @@ namespace ui_ns {
 				{
 					std::cout << "Invalid choice. Please try again: ";
 					std::cin >> choice;
+					catch_extraction_fail();
 					running = true;
 					menu_token = false;
 					break;

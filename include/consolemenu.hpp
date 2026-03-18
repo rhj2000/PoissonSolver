@@ -4,6 +4,7 @@ namespace ui_ns {
 
 	public:
 
+		static void catch_extraction_fail();
 		static void run();
 
 	};
